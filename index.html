@@ -44,8 +44,8 @@
             resultDiv.innerHTML = 'Processing...';
             
             try {
-                // Using a free Instagram downloader API
-                const apiUrl = `https://igdownloader.io/api/ajaxSearch`;
+                // Using SnapInsta API
+                const apiUrl = `https://snapinsta.app/api/ajaxSearch`;
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -59,10 +59,9 @@
                     resultDiv.innerHTML = 'Failed to fetch media. Please try again.';
                 }
             } catch (error) {
-                resultDiv.innerHTML = 'Error fetching media.';
+                resultDiv.innerHTML = 'Error fetching media. API might be down.';
             }
         }
     </script>
 </body>
-      </html>
-        
+</html>
