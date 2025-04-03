@@ -6,12 +6,12 @@
     <title>Instagram Downloader</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
-        select, input, button { margin: 10px; padding: 10px; }
+        input, button { margin: 10px; padding: 10px; width: 300px; }
     </style>
 </head>
 <body>
     <h2>Instagram Downloader</h2>
-    <input type="text" id="instaLink" placeholder="Paste Instagram link here" size="50">
+    <input type="text" id="instaLink" placeholder="Paste Instagram link here">
     <br>
     <button onclick="redirectToDownloader()">Download</button>
 
@@ -23,8 +23,8 @@
                 return;
             }
 
-            // Redirect to SnapInsta with the user's link
-            const downloaderUrl = `https://snapinsta.app/en?url=${encodeURIComponent(link)}`;
+            // Redirect to SaveInsta with the user's link
+            const downloaderUrl = `https://saveinsta.app/reel?url=${encodeURIComponent(link)}`;
             window.open(downloaderUrl, '_blank');
         }
     </script>
