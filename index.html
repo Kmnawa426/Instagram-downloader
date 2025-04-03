@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        select, input, button {
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Instagram Downloader</h2>
+    <label for="type">Select Type:</label>
+    <select id="type">
+        <option value="post">Post</option>
+        <option value="reel">Reel</option>
+        <option value="story">Story</option>
+    </select>
+    <br>
+    <input type="text" id="instaLink" placeholder="Paste Instagram link here" size="50">
+    <br>
+    <button onclick="downloadMedia()">Download</button>
+    <br>
+    <div id="result"></div>
+
+    <script>
+        async function downloadMedia() {
+            const link = document.getElementById('instaLink').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (!link) {
+                alert('Please enter an Instagram link!');
+                return;
+            }
+            
+            resultDiv.innerHTML = 'Processing...';
+            
+            try {
+                // Using a free Instagram downloader API
+                const apiUrl = `https://igdownloader.io/api/ajaxSearch`;
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `q=${encodeURIComponent(link)}`
+                });
+                
+                const data = await response.json();
+                if (data && data.medias && data.medias.length > 0) {
+                    resultDiv.innerHTML = `<a href="${data.medias[0].url}" target="_blank">Click here to download</a>`;
+                } else {
+                    resultDiv.innerHTML = 'Failed to fetch media. Please try again.';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = 'Error fetching media.';
+            }
+        }
+    </script>
+</body>
+      </html>
+        
